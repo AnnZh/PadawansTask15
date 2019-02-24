@@ -97,22 +97,11 @@ namespace PadawansTask15
         /// </example>
         public IEnumerable<string> GetPrefixItems(IEnumerable<string> data, string prefix)
         {
-            if (prefix == null)
+            if (data == null || prefix == null)
                 throw new ArgumentNullException();
-            List<string> data2 = new List<string>();
             prefix = prefix.ToLower();
-            foreach (string s in data)
-            {
-                int i = s.IndexOf(prefix);
-
-                if (i == 0)
-                    data2.Add(s);
-                if (prefix == "")
-                    data2.Add(s);
-                else if (s == null)
-                { }
-            }
-            return data2;
+            IEnumerable<string> result = data.Where(x => x.ToLower().Contains(prefix));
+            return result;
         }
 
         /// <summary> Finds the 3 largest numbers from a sequence.</summary>
@@ -162,7 +151,7 @@ namespace PadawansTask15
             {
                 if (i == null)
                     sum = sum + 0;
-                else if(i.GetType() == 3.GetType() || (-10).GetType() == i.GetType())
+                else if(i.GetType() == typeof(int))
                 {
                     sum = sum + Convert.ToInt32(i);
                 }
