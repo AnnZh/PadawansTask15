@@ -173,6 +173,18 @@ namespace PadawansTask15.Tests
                         new object[] { true, false }, 0,
                         "Method should return zero if data does not contain integers."
                     );
+                    yield return new TestCaseData(
+                        new object[] { 10, "ten", -10, null }, 0,
+                        "Method should return zero if data does not contain integers."
+                    );
+                    yield return new TestCaseData(
+                        new object[] { 10, "ten", 10, null }, 20,
+                        "Method should return zero if data does not contain integers."
+                    );
+                    yield return new TestCaseData(
+                        new object[] { null, null, null }, 0,
+                        "Method should return zero if data does not contain integers."
+                    );
                 }
             }
         }

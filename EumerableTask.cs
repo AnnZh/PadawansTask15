@@ -72,8 +72,8 @@ namespace PadawansTask15
         public IEnumerable<long> GetSquareSequence(IEnumerable<int> data)
         {
             List<long> data2 = new List<long>();
-            data.ToList();
-            foreach (int i in data)
+
+            foreach (long i in data)
             {
                 data2.Add(i * i);
             }
@@ -97,18 +97,20 @@ namespace PadawansTask15
         /// </example>
         public IEnumerable<string> GetPrefixItems(IEnumerable<string> data, string prefix)
         {
+            if (prefix == null)
+                throw new ArgumentNullException();
             List<string> data2 = new List<string>();
-            data.ToList();
+            prefix = prefix.ToLower();
             foreach (string s in data)
             {
-                int i = s.IndexOf(prefix.ToLower());
+                int i = s.IndexOf(prefix);
 
-                if (i > -1)
+                if (i == 0)
                     data2.Add(s);
                 if (prefix == "")
                     data2.Add(s);
                 else if (s == null)
-                    throw new ArgumentNullException();
+                { }
             }
             return data2;
         }
@@ -158,7 +160,9 @@ namespace PadawansTask15
             int sum = 0;
             foreach(var i in data)
             {
-                if(i.GetType() == 3.GetType())
+                if (i == null)
+                    sum = sum + 0;
+                else if(i.GetType() == 3.GetType() || (-10).GetType() == i.GetType())
                 {
                     sum = sum + Convert.ToInt32(i);
                 }
